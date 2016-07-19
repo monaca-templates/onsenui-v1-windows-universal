@@ -1,4 +1,4 @@
-/*! onsenui - v1.3.8 - 2015-07-27 */
+/*! onsenui - v1.3.17 - 2016-06-29 */
 // Copyright (c) Microsoft Open Technologies, Inc.  All rights reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
 // JavaScript Dynamic Content shim for Windows Store apps
 (function () {
@@ -681,7 +681,7 @@
 		this.touchStartY = touch.pageY;
 
 		// Prevent phantom clicks on fast double-tap (issue #36)
-		if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+		if ((event.timeStamp - this.lastClickTime) < this.tapDelay && (event.timeStamp - this.lastClickTime) > -1) {
 			event.preventDefault();
 		}
 
@@ -765,7 +765,7 @@
 		}
 
 		// Prevent phantom clicks on fast double-tap (issue #36)
-		if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+		if ((event.timeStamp - this.lastClickTime) < this.tapDelay && (event.timeStamp - this.lastClickTime) > -1) {
 			this.cancelNextClick = true;
 			return true;
 		}
@@ -4885,7 +4885,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
-}(new Function("return this")()));
+}(function() {return this;}()));
 
 (function() {
     function Viewport() {
@@ -4957,9 +4957,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/back_button.tpl',
     '<span \n' +
@@ -4981,9 +4981,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/button.tpl',
     '<span class="label ons-button-inner"></span>\n' +
@@ -4993,9 +4993,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/dialog.tpl',
     '<div class="dialog-mask"></div>\n' +
@@ -5006,9 +5006,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/icon.tpl',
     '<i class="fa fa-{{icon}} fa-{{spin}} fa-{{fixedWidth}} fa-rotate-{{rotate}} fa-flip-{{flip}}" ng-class="sizeClass" ng-style="style"></i>\n' +
@@ -5017,9 +5017,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/popover.tpl',
     '<div class="popover-mask"></div>\n' +
@@ -5032,9 +5032,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/row.tpl',
     '<div class="row row-{{align}} ons-row-inner"></div>\n' +
@@ -5043,9 +5043,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/sliding_menu.tpl',
     '<div class="onsen-sliding-menu__menu ons-sliding-menu-inner"></div>\n' +
@@ -5055,9 +5055,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/split_view.tpl',
     '<div class="onsen-split-view__secondary full-screen ons-split-view-inner"></div>\n' +
@@ -5067,9 +5067,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/switch.tpl',
     '<label class="switch {{modifierTemplater(\'switch--*\')}}">\n' +
@@ -5081,9 +5081,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/tab.tpl',
     '<input type="radio" name="tab-bar-{{tabbarId}}" style="display: none">\n' +
@@ -5094,9 +5094,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/tab_bar.tpl',
     '<div class="ons-tab-bar__content tab-bar__content"></div>\n' +
@@ -5106,9 +5106,9 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 (function(module) {
-try { module = angular.module('templates-main'); }
-catch(err) { module = angular.module('templates-main', []); }
-module.run(['$templateCache', function($templateCache) {
+try { app = angular.module('templates-main'); }
+catch(err) { app = angular.module('templates-main', []); }
+app.run(['$templateCache', function($templateCache) {
   'use strict';
   $templateCache.put('templates/toolbar_button.tpl',
     '<span class="toolbar-button {{modifierTemplater(\'toolbar-button--*\')}} navigation-bar__line-height" ng-transclude></span>\n' +
@@ -7198,12 +7198,16 @@ limitations under the License.
        * @return {Array}
        */
       _getCarouselItemElements: function() {
-        var nodeList = this._element[0].querySelectorAll('ons-carousel-item'),
+        var nodeList = this._element[0].children,
           rv = [];
 
         for (var i = nodeList.length; i--; ) {
           rv.unshift(nodeList[i]);
         }
+
+        rv = rv.filter(function(item) {
+          return item.nodeName.toLowerCase() === 'ons-carousel-item';
+        });
 
         return rv;
       },
@@ -7292,6 +7296,10 @@ limitations under the License.
               duration: duration,
               timing: 'cubic-bezier(.1, .4, .1, 1)'
             })
+            .queue(function(done) {
+              done();
+              this._tryFirePostChangeEvent();
+            }.bind(this))
             .play();
           this._scroll = 0;
           return;
@@ -7307,6 +7315,10 @@ limitations under the License.
               duration: duration,
               timing: 'cubic-bezier(.1, .4, .1, 1)'
             })
+            .queue(function(done) {
+              done();
+              this._tryFirePostChangeEvent();
+            }.bind(this))
             .play();
           this._scroll = maxScroll;
           return;
@@ -7456,6 +7468,10 @@ limitations under the License.
         return this._deviceBackButtonHandler;
       },
 
+      _getMaskColor: function() {
+        return this._element[0].getAttribute('mask-color') || 'rgba(0, 0, 0, 0.2)';
+      },
+
       /**
        * Show dialog.
        *
@@ -7480,6 +7496,8 @@ limitations under the License.
 
             this._element.css('display', 'block');
             this._mask.css('opacity', 1);
+
+            this._mask.css('backgroundColor', this._getMaskColor());
 
             if (options.animation) {
               animation = DialogView._animatorDict[options.animation];
@@ -8828,7 +8846,7 @@ limitations under the License.
         this._pageContent = this._findPageContent();
 
         if (!this._pageContent) {
-          throw new Error('ons-lazy-repeat must be a descendant of an <ons-page> object.');
+          throw new Error('ons-lazy-repeat must be a descendant of an <ons-page> or an <ons-scroller> element.');
         }
 
         this._itemHeightSum = [];
@@ -9074,24 +9092,65 @@ limitations under the License.
           e = e.parentNode;
 
           if (e.className) {
-            if (e.className.split(/\s+/).indexOf('page__content') >= 0) {
-              break;
+            var classNames = e.className.split(/\s+/);
+            if (classNames.indexOf('page__content') >= 0 || classNames.indexOf('ons-scroller__content') >= 0) {
+              return e;
             }
           }
         }
 
-        return e;
+        return null;
+      },
+
+      _debounce: function(func, wait, immediate) {
+        var timeout;
+        return function() {
+          var context = this, args = arguments;
+          var later = function() {
+            timeout = null;
+            if (!immediate) {
+              func.apply(context, args);
+            }
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) {
+            func.apply(context, args);
+          }
+        };
+      },
+
+      _doubleFireOnTouchend: function(){
+        this._render();
+        this._debounce(this._render.bind(this), 100);
       },
 
       _addEventListeners: function() {
-        this._boundOnChange = this._onChange.bind(this);
+        if (ons.platform.isIOS()) {
+          this._boundOnChange = this._debounce(this._onChange.bind(this), 30);
+        } else {
+          this._boundOnChange = this._onChange.bind(this);
+        }
 
         this._pageContent.addEventListener('scroll', this._boundOnChange, true);
+
+        if (ons.platform.isIOS()) {
+          this._pageContent.addEventListener('touchmove', this._boundOnChange, true);
+          this._pageContent.addEventListener('touchend', this._doubleFireOnTouchend, true);
+        }
+
         $document[0].addEventListener('resize', this._boundOnChange, true);
       },
 
       _removeEventListeners: function() {
         this._pageContent.removeEventListener('scroll', this._boundOnChange, true);
+
+        if (ons.platform.isIOS()) {
+          this._pageContent.removeEventListener('touchmove', this._boundOnChange, true);
+          this._pageContent.removeEventListener('touchend', this._doubleFireOnTouchend, true);
+        }
+
         $document[0].removeEventListener('resize', this._boundOnChange, true);
       },
 
@@ -9418,7 +9477,7 @@ limitations under the License.
       this.element.on(this._pointerEvents, this._blockEvents);
     },
 
-    _pointerEvents: 'touchstart touchend touchmove click',
+    _pointerEvents: 'touchmove',
 
     /**
      * @return {PageView}
@@ -9969,6 +10028,7 @@ limitations under the License.
           while (self.pages.length > 1) {
             self.pages.shift().destroy();
           }
+          self._scope.$digest();
           onTransitionEnd();
         };
 
@@ -11139,10 +11199,12 @@ limitations under the License.
         // Hack to make it work on Android 4.4 WebView. Scrolls manually near the top of the page so
         // there will be no inertial scroll when scrolling down. Allowing default scrolling will
         // kill all 'touchmove' events.
-        var el = this._pageElement[0];
-        el.scrollTop = this._startScroll - event.gesture.deltaY;
-        if (el.scrollTop < window.innerHeight && event.gesture.direction !== 'up') {
-          event.gesture.preventDefault();
+        if ($onsen.isAndroid()) {
+          var el = this._pageElement[0];
+          el.scrollTop = this._startScroll - event.gesture.deltaY;
+          if (el.scrollTop < window.innerHeight && event.gesture.direction !== 'up') {
+            event.gesture.preventDefault();
+          }
         }
 
         if (this._currentTranslation === 0 && this._getCurrentScroll() === 0) {
@@ -11298,6 +11360,20 @@ limitations under the License.
       _translateTo: function(scroll, options) {
         options = options || {};
 
+        if (this._currentTranslation == 0 && scroll == 0) {
+          return;
+        }
+
+        var done = function() {
+          if (scroll === 0) {
+            this._scrollElement[0].removeAttribute('style');
+          }
+
+          if (options.callback) {
+            options.callback();
+          }
+        }.bind(this);
+
         this._currentTranslation = scroll;
 
         if (options.animate) {
@@ -11308,14 +11384,14 @@ limitations under the License.
               duration: 0.3,
               timing: 'cubic-bezier(.1, .7, .1, 1)'
             })
-            .play(options.callback);
+            .play(done);
         }
         else {
           animit(this._scrollElement[0])
             .queue({
               transform: this._generateTranslationTransform(scroll)
             })
-            .play(options.callback);
+            .play(done);
         }
       },
 
@@ -12675,7 +12751,7 @@ limitations under the License.
         }
 
         if (this._isInsideIgnoredElement(event.target)){
-          event.gesture.stopDetect();
+          this._deactivateHammer();
         }
 
         switch (event.type) {
@@ -13643,6 +13719,16 @@ limitations under the License.
 
         selectedTabItem.setActive();
 
+        for (var i = 0; i < this._tabItems.length; i++) {
+          if (this._tabItems[i] != selectedTabItem) {
+            this._tabItems[i].setInactive();
+          } else {
+            if (!needLoad) {
+              this.emit('postchange', {index: index, tabItem: selectedTabItem});
+            }
+          }
+        }
+
         if (needLoad) {
           var removeElement = true;
 
@@ -13666,16 +13752,6 @@ limitations under the License.
           }
           else {
             this._loadPage(selectedTabItem.page, params);
-          }
-        }
-
-        for (var i = 0; i < this._tabItems.length; i++) {
-          if (this._tabItems[i] != selectedTabItem) {
-            this._tabItems[i].setInactive();
-          } else {
-            if (!needLoad) {
-              this.emit('postchange', {index: index, tabItem: selectedTabItem});
-            }
           }
         }
 
@@ -13735,6 +13811,8 @@ limitations under the License.
        * @param {Object} [options.callback]
        */
       loadPage: function(page, options) {
+        options = options || {};
+        options._removeElement = true;
         return this._loadPage(page, options);
       },
 
@@ -13761,13 +13839,13 @@ limitations under the License.
        * @param {Object} options
        * @param {Object} options.animation
        */
-      _switchPage: function(element, scope, options) {
+      _switchPage: function(element, options) {
         if (this._currentPageElement) {
           var oldPageElement = this._currentPageElement;
           var oldPageScope = this._currentPageScope;
 
           this._currentPageElement = element;
-          this._currentPageScope = scope;
+          this._currentPageScope = element.data('_scope');
 
           this._getAnimatorOption(options).apply(element, oldPageElement, function() {
             if (options._removeElement) {
@@ -13785,7 +13863,7 @@ limitations under the License.
 
         } else {
           this._currentPageElement = element;
-          this._currentPageScope = scope;
+          this._currentPageScope = element.data('_scope');
 
           if (options.callback instanceof Function) {
             options.callback();
@@ -13808,7 +13886,7 @@ limitations under the License.
 
         pageScope.$evalAsync();
 
-        this._switchPage(pageContent, pageScope, options);
+        this._switchPage(pageContent, options);
       },
 
       /**
@@ -13820,7 +13898,7 @@ limitations under the License.
         options = options || {};
 
         element.css('display', 'block');
-        this._switchPage(element, element.scope(), options);
+        this._switchPage(element, options);
       },
 
       /**
@@ -16660,7 +16738,7 @@ limitations under the License.
       replace: false,
       transclude: false,
       scope: false,
-      compile: function(element, attrs) {
+      link: function(scope, element, attrs) {
         if (!attrs.onsLoadingPlaceholder.length) {
           throw Error('Must define page to load.');
         }
@@ -16681,7 +16759,7 @@ limitations under the License.
             newElement.css('display', 'none');
 
             element.append(newElement);
-            ons.compile(newElement[0]);
+            $compile(newElement)(scope);
 
             for (var i = element[0].childNodes.length - 1; i >= 0; i--){
               var e = element[0].childNodes[i];
@@ -17243,7 +17321,10 @@ limitations under the License.
 
             element.data('ons-navigator', navigator);
 
+            element.data('_scope', scope);
+
             scope.$on('$destroy', function() {
+              element.data('_scope', undefined);
               navigator._events = undefined;
               element.data('ons-navigator', undefined);
               element = null;
@@ -17411,7 +17492,10 @@ limitations under the License.
       pageBackground.addClass(modifierTemplater('page--*__background'));
       pageBackground = null;
 
+      element.data('_scope', scope);
+
       $onsen.cleaner.onDestroy(scope, function() {
+        element.data('_scope', undefined);
         page._events = undefined;
         $onsen.removeModifierMethods(page);
         element.data('ons-page', undefined);
@@ -18729,7 +18813,10 @@ limitations under the License.
           $onsen.declareVarAttribute(attrs, slidingMenu);
           element.data('ons-sliding-menu', slidingMenu);
 
-          scope.$on('$destroy', function(){
+          element.data('_scope', scope);
+
+          scope.$on('$destroy', function() {
+            element.data('_scope', undefined);
             slidingMenu._events = undefined;
             element.data('ons-sliding-menu', undefined);
           });
@@ -19104,8 +19191,10 @@ limitations under the License.
           $onsen.registerEventHandlers(splitView, 'update presplit precollapse postsplit postcollapse destroy');
 
           element.data('ons-split-view', splitView);
+          element.data('_scope', scope);
 
           scope.$on('$destroy', function() {
+            element.data('_scope', undefined);
             splitView._events = undefined;
             element.data('ons-split-view', undefined);
           });
@@ -21917,7 +22006,8 @@ window.ons.notification = (function() {
     dialogEl.append(footerEl);
 
     angular.element(document.body).append(dialogEl);
-    ons.compile(dialogEl[0]);
+
+    ons.$compile(dialogEl)(dialogEl.injector().get('$rootScope'));
     var alertDialog = dialogEl.data('ons-alert-dialog');
 
     if (buttonLabels.length <= 2) {
